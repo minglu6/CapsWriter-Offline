@@ -1,24 +1,25 @@
 """
 默认角色 - 进行热词替换和润色，修正语音识别错误
 """
+import os
 
 # ==================== 基本信息 ====================
 name = ''                           # 角色名称（留空表示默认）
 match = True                        # 是否启用前缀匹配
-process = False                      # 是否启用 LLM 处理
+process = True                       # 是否启用 LLM 处理
 
 # ==================== API 配置 ====================
-provider = 'lmstudio'                   # API 提供商：'ollama', 'openai', 'deepseek', 'moonshot', 'zhipu', 'claude', 'gemini'
-api_url = ''                            # 留空则自动使用 provider 对应的默认值
-api_key = ''                            # API Key
-model = 'local-model'                   # 模型名称
+provider = 'openai'                                     # 走 OpenAI 兼容协议（SiliconFlow / DeepSeek / 任何兼容端点）
+api_url = 'https://api.siliconflow.cn/v1'               # SiliconFlow 端点
+api_key = os.environ.get('SILI_API_KEY', '')            # 从环境变量读取（避免明文入库）
+model = 'Qwen/Qwen2.5-14B-Instruct'                     # SiliconFlow 上的 Qwen2.5-14B（非思考模型，速度/质量平衡）
 
 # ==================== 上下文管理 ====================
 max_context_length = 4096               # 最大上下文长度（token 数）
 
 # ==================== 功能配置 ====================
 enable_hotwords = True                  # 是否启用热词
-enable_thinking = False                 # 是否启用思考（仅 Ollama）
+enable_thinking = True                  # 设为 True 跳过项目自带的 Claude 风格禁用思考逻辑（不适用于 Qwen）
 enable_history = True                   # 是否保留对话历史
 enable_read_selection = False           # 是否启用获取选中文字（通过 Ctrl+C）
 selection_max_length = 1024             # 选中文字最大长度
@@ -43,7 +44,9 @@ max_tokens = 4096                       # 最大输出 token 数
 stop = ''                               # 停止序列
 
 # ==================== 高级选项 ====================
-extra_options = {}                      # 额外的 API 参数（JSON 格式）
+# Qwen3.6-27B 是思考模型；SiliconFlow 上用顶层 enable_thinking=false 关掉思考，
+# 通过 OpenAI SDK 的 extra_body 透传非标字段。
+extra_options = {'extra_body': {'enable_thinking': False}}
 
 # ==================== 提示词前缀 ====================
 prompt_prefix_hotwords = '热词列表：'    # 热词列表前缀
