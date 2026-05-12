@@ -17,17 +17,17 @@ class ClientConfig:
     # 快捷键配置列表
     shortcuts = [
         {
-            'key': 'caps_lock',     # 监听大写锁定键
+            'key': 'alt_gr',        # 监听右 Alt 键
             'type': 'keyboard',     # 是键盘快捷键
-            'suppress': True,      # 不阻塞按键（但录音结束会补发）
-            'hold_mode': True,      # 长按模式
+            'suppress': True,       # 阻塞按键（短按会尝试补发）
+            'hold_mode': False,     # 单击录音模式
             'enabled': True         # 启用此快捷键
         },
         {
             'key': 'x2',
             'type': 'mouse',
             'suppress': True,
-            'hold_mode': True,
+            'hold_mode': False,
             'enabled': True
         },
     ]
@@ -126,4 +126,3 @@ r"""
   {'key': 'f12', 'type': 'keyboard', 'suppress': True, 'hold_mode': True, 'enabled': True}, 
   {'key': 'x2', 'type': 'mouse', 'suppress': True, 'hold_mode': True, 'enabled': True}, 
 """
-

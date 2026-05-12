@@ -6,6 +6,9 @@
 
 **CapsWriter-Offline** 是一个专为 Windows 打造的**完全离线**语音输入工具。
 
+**全新 V2.5 已打包，处于内测阶段，可到 [#361](https://github.com/HaujetZhao/CapsWriter-Offline/issues/361) 下载体验，待反馈与改进完善后，才会发布正式 Release。**
+
+
 ## ✨ 核心特性
 
 -   **语音输入**：按住 `CapsLock键` 或 `鼠标侧键X2` 说话，松开即输入，超低延迟，默认去除末尾逗句号。支持对讲机模式和单击录音模式。
@@ -29,16 +32,6 @@
 | SenseVoice-Small | ★★★☆☆ | ★★★★★ | ONNX | ✅ |
 | Fun-ASR-Nano | ★★★★☆ | ★★★★☆ | ONNX + GGUF | ✅ |
 | Qwen3-ASR | ★★★★★ | ★★★☆☆ | ONNX + GGUF | ✅ |
-
-
-性能参考（20s 音频转录延迟）：
-
-| 模型 | CPU U9-285H | GPU RTX5050 |
-|------|------------|------------|
-| Paraformer | 0.6s | - |
-| SenseVoice-Small | 0.6s | 0.15s |
-| Fun-ASR-Nano | 2.0s | 0.5s |
-| Qwen3-ASR-1.7B | 4.0s | 1.0s |
 
 详细功能说明请参考 [`docs/`](docs/) 目录：
 - [环境依赖安装说明](docs/环境依赖安装说明.md) — VC++ 运行库、FFmpeg 安装

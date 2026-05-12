@@ -26,9 +26,6 @@ class ServerConfig:
     log_level = 'DEBUG'        # 日志级别：'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
     aligner_idle_timeout = 10  # 对齐引擎空闲多少秒后自动释放显存 (0 表示不释放)
 
-    # 集成显卡兼容性补丁
-    # os.environ["GGML_VK_DISABLE_COOPMAT"] = "1"   # AMD集显无法加载 GGUF 模型时尝试
-    # os.environ["GGML_VK_DISABLE_F16"] = "1"       # 集成显卡解码有误，强制熔断时尝试
 
 
 
@@ -140,7 +137,7 @@ class Qwen3ASRGGUFArgs:
     llm_fn = ModelPaths.qwen3_asr_gguf_llm_decode.name
 
     # 显卡加速
-    onnx_provider = 'CPU'       # ONNX 推理后端 (CPU, DML)
+    onnx_provider = 'DML'       # ONNX 推理后端 (CPU, DML)
     llm_use_gpu = True          # 是否启用 GPU 加速 GGUF 模型
     
     # 模型细节
@@ -167,4 +164,3 @@ class ForceAlignerGGUFArgs:
     # 对齐细节
     n_ctx = 3072                # 上下文窗口大小
     dml_pad_to = 30             # 开启 DirectML 加速时，短音频统一填充到指定长度，有加速效果
-
