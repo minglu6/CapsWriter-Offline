@@ -5,6 +5,7 @@ import os
 
 # ==================== 基本信息 ====================
 name = ''                           # 角色名称（留空表示默认）
+enabled = True                      # 是否启用此角色
 match = True                        # 是否启用前缀匹配
 process = True                       # 是否启用 LLM 处理
 
